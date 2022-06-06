@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { BsArrowRight } from 'react-icons/bs';
 
 type Card = {
   title: string,
@@ -24,8 +25,9 @@ const CardContainer = styled.div`
   padding: 20px;
   background: white;
   margin: 16px;
-  overflow: hidden;
-  height: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Heading = styled.h2<{ large: boolean }>`
@@ -36,6 +38,13 @@ const Heading = styled.h2<{ large: boolean }>`
 
 const Body = styled.p<{ large: boolean }>`
   font-size: ${props => props.large ? "18px" : "16px"};
+  flex-grow: 1;
+  overflow: hidden;
+`;
+
+const Icon = styled.div`
+  color: #a8b6ff;
+  text-align: right;
 `;
 
 const Card: FC<Card> = ({ title, body, large = false }) => {
@@ -45,6 +54,11 @@ const Card: FC<Card> = ({ title, body, large = false }) => {
       <CardContainer>
         <Heading large={large}>{title}</Heading>
         <Body large={large}>{body}</Body>
+        <Icon>
+          <div aria-label="arrow-icon">
+              <BsArrowRight />
+          </div>
+        </Icon>
       </CardContainer>
     </CardLayoutContainer>
   );

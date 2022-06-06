@@ -18,4 +18,12 @@ describe('Card', () => {
     const body = screen.getByText("test body");
     expect(body).toBeInTheDocument();
   });
+
+  it('will render arrow icon', () => {
+
+    render(<Card title="test title" body="test body" />);
+
+    const icon = screen.getByLabelText("arrow-icon");
+    expect(icon).toBeInTheDocument();
+  });
 });
