@@ -6,7 +6,10 @@ import styled from "styled-components";
 type Blog = {
   title: string,
   preface: string,
-  body: string
+  body: string,
+  sys: {
+    id: string
+  }
 };
 
 const GET_BLOGS = gql`
@@ -15,7 +18,10 @@ const GET_BLOGS = gql`
       items {
         title
         preface
-        body
+        body,
+        sys {
+          id
+        }
       }
     }
   }
@@ -47,11 +53,15 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
         .blogPostCollection
         .items
         .map((blog: Blog, index: number) => {
-          return <Card 
-            key={index} 
-            large={!(index % 5)}
-            title={blog.title}
-            body={blog.body} />
+
+          return (
+            
+            <Card 
+              key={blog.sys.id}
+              large={!(index % 5)}
+              title={blog.title}
+              body={blog.body} />
+          );
         })}
     </BlogsLayoutContainer>
   );
