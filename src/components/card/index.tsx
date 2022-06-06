@@ -22,7 +22,7 @@ const CardLayoutContainer = styled.div<{ large: boolean }>`
 
 const CardContainer = styled.div`
   box-shadow: 0px 2px 3px #ddd;
-  padding: 20px;
+  padding: 26px;
   background: white;
   margin: 16px;
   height: 250px;
@@ -34,6 +34,7 @@ const Heading = styled.h2<{ large: boolean }>`
   color: #5045CD;
   font-size: ${props => props.large ? "25px" : "21px"};
   font-weight: 500;
+  margin: 0;
 `;
 
 const Body = styled.p<{ large: boolean }>`
