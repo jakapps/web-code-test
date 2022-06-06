@@ -7,6 +7,7 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
+import GlobalStyle from '../globalstyles';
 
 let apolloClient: ApolloClient<any>;
 
@@ -36,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
+      <GlobalStyle />
       <Component {...pageProps} />
     </ApolloProvider>
   );

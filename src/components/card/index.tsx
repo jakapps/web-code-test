@@ -10,12 +10,13 @@ type Card = {
 const Container = styled.div`
   box-shadow: 0px 2px 3px #ddd;
   padding: 14px;
+  background: white;
 `;
 
 const Heading = styled.h2<{ large: boolean }>`
   color: #5045CD;
-  background: white;
-  font-size: ${props => props.large ? "25px" : "21px"}
+  font-size: ${props => props.large ? "25px" : "21px"};
+  font-weight: 500;
 `;
 
 const Body = styled.p<{ large: boolean }>`
