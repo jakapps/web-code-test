@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { gql, useQuery } from "@apollo/client";
+import Card from "../card";
 
 type Blog = {
   title: string,
@@ -37,7 +38,7 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
     .blogPostCollection
     .items
     .map((blog: Blog, index: number) => {
-      return <div key={index}>{blog.title}</div>
+      return <Card key={index} title={blog.title}></Card>;
     });
 };
 
