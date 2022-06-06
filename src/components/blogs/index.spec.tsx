@@ -141,4 +141,21 @@ describe('Blogs', () => {
       expect(blogs[9]).not.toBeInTheDocument();
     });
   });
+
+  it('will render a loading message', async () => {
+
+     render((
+      <MockedProvider mocks={mocks}>
+        <Blogs />
+      </MockedProvider>
+    ));
+
+    let loading = screen.queryByText("Loading...");
+    expect(loading).toBeInTheDocument();
+
+    await waitFor(() => {
+      let loading = screen.queryByText("Loading...");
+      expect(loading).not.toBeInTheDocument();
+    });
+  });
 });
