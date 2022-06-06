@@ -1,5 +1,10 @@
 import { Blogs } from '../components/blogs';
+import Container from "../components/container";
 
 export default function BlogListingPage() {
-  return <Blogs limit={10} />;
+  return (
+    <Container>
+      <Blogs limit={10} />
+    </Container>
+  );
 }
