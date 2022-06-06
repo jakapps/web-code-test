@@ -4,7 +4,7 @@ import styled from "styled-components";
 type Card = {
   title: string,
   body: string,
-  large: boolean
+  large?: boolean
 };
 
 const Container = styled.div`
