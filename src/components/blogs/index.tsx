@@ -40,6 +40,7 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
     .map((blog: Blog, index: number) => {
       return <Card 
         key={index} 
+        large={!index}
         title={blog.title}
         body={blog.body} />
     });
