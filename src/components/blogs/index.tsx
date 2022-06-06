@@ -19,10 +19,10 @@ const GET_BLOGS = gql`
   }
 `;
 
-const Blogs: FC = () => {
+const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
   const { loading, error, data } = useQuery(
     GET_BLOGS,
-    { variables: { limit: 10 } }
+    { variables: { limit } }
   );
 
   if(loading) {

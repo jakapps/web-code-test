@@ -69,6 +69,19 @@ const mocks = [
         }
       }
     }
+  },
+  {
+    request: {
+      query: GET_BLOGS,
+      variables: { limit: 4 }
+    },
+    result: {
+      data: {
+        "blogPostCollection": {
+          "items": blogs.slice(0, 4)
+        }
+      }
+    }
   }
 ];
 
@@ -89,6 +102,43 @@ describe('Blogs', () => {
 
       expect(blog1).toBeInTheDocument();
       expect(blog2).toBeInTheDocument();
+    });
+  });
+
+  it('will render correct number of blogs', async () => {
+
+    render((
+      <MockedProvider mocks={mocks}>
+        <Blogs limit={4} />
+      </MockedProvider>
+    ));
+
+    await waitFor(() => {
+
+      const blogs = [
+        screen.queryByText('Quis Mattis Leo'),
+        screen.queryByText('Lorem Ipsum'),
+        screen.queryByText('Aliquam Laoreet'),
+        screen.queryByText("Nunc Tempor Tristique"),
+        screen.queryByText("Morbi Pharetra Commodo ASuctor"),
+        screen.queryByText("Vestibulum Pulvinar Leo Vel Venenatis Aliquam"),
+        screen.queryByText("Aenean Varius Elit"),
+        screen.queryByText("Donec Vitae Varius Dolor"),
+        screen.queryByText("Praesent Molestie"),
+        screen.queryByText("Morbi Eget")
+      ];
+
+      expect(blogs[0]).toBeInTheDocument();
+      expect(blogs[1]).toBeInTheDocument();
+      expect(blogs[2]).toBeInTheDocument();
+      expect(blogs[3]).toBeInTheDocument();
+
+      expect(blogs[4]).not.toBeInTheDocument();
+      expect(blogs[5]).not.toBeInTheDocument();
+      expect(blogs[6]).not.toBeInTheDocument();
+      expect(blogs[7]).not.toBeInTheDocument();
+      expect(blogs[8]).not.toBeInTheDocument();
+      expect(blogs[9]).not.toBeInTheDocument();
     });
   });
 });
