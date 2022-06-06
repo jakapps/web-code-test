@@ -82,8 +82,16 @@ const mocks = [
         }
       }
     }
+  },
+  {
+    request: {
+      query: GET_BLOGS,
+      variables: { limit: 7 }
+    },
+    error: new Error('An error occurred')
   }
 ];
+
 
 describe('Blogs', () => {
 
@@ -156,6 +164,23 @@ describe('Blogs', () => {
     await waitFor(() => {
       let loading = screen.queryByText("Loading...");
       expect(loading).not.toBeInTheDocument();
+    });
+  });
+
+  it('will handle errors', async () => {
+
+     render((
+      <MockedProvider mocks={mocks}>
+        <Blogs limit={7} />
+      </MockedProvider>
+    ));
+
+    await waitFor(() => {
+      const blog1 = screen.queryByText('Quis Mattis Leo');
+      expect(blog1).not.toBeInTheDocument();
+  
+      const error = screen.getByText('Something went wrong');
+      expect(error).toBeInTheDocument();
     });
   });
 });

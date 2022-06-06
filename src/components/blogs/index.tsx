@@ -29,6 +29,10 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
     return "Loading...";
   }
 
+  if(error) {
+    return "Something went wrong";
+  }
+
   return data
     .blogPostCollection
     .items
