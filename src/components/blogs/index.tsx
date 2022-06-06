@@ -22,6 +22,7 @@ const GET_BLOGS = gql`
 `;
 
 const BlogsLayoutContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 `;

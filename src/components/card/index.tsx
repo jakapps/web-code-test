@@ -8,13 +8,24 @@ type Card = {
 };
 
 const CardLayoutContainer = styled.div<{ large: boolean }>`
-  width: ${props => props.large ? "66.666666%" : "33.333333%" }
-`
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    width: ${props => props.large ? "100%" : "50%" };
+  }
+
+  @media only screen and (min-width: 1024px) {
+    width: ${props => props.large ? "66.666666%" : "33.333333%" };
+  }
+`;
 
 const CardContainer = styled.div`
   box-shadow: 0px 2px 3px #ddd;
-  padding: 14px;
+  padding: 20px;
   background: white;
+  margin: 16px;
+  overflow: hidden;
+  height: 200px;
 `;
 
 const Heading = styled.h2<{ large: boolean }>`
@@ -24,7 +35,7 @@ const Heading = styled.h2<{ large: boolean }>`
 `;
 
 const Body = styled.p<{ large: boolean }>`
-  font-size: ${props => props.large ? "18px" : "16px"}
+  font-size: ${props => props.large ? "18px" : "16px"};
 `;
 
 const Card: FC<Card> = ({ title, body, large = false }) => {
