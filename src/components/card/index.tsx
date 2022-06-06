@@ -7,7 +7,11 @@ type Card = {
   large?: boolean
 };
 
-const Container = styled.div`
+const CardLayoutContainer = styled.div<{ large: boolean }>`
+  width: ${props => props.large ? "66.666666%" : "33.333333%" }
+`
+
+const CardContainer = styled.div`
   box-shadow: 0px 2px 3px #ddd;
   padding: 14px;
   background: white;
@@ -26,10 +30,12 @@ const Body = styled.p<{ large: boolean }>`
 const Card: FC<Card> = ({ title, body, large = false }) => {
 
   return (
-    <Container>
-      <Heading large={large}>{title}</Heading>
-      <Body large={large}>{body}</Body>
-    </Container>
+    <CardLayoutContainer large={large}>
+      <CardContainer>
+        <Heading large={large}>{title}</Heading>
+        <Body large={large}>{body}</Body>
+      </CardContainer>
+    </CardLayoutContainer>
   );
 };
 

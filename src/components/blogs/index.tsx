@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Card from "../card";
+import styled from "styled-components";
 
 type Blog = {
   title: string,
@@ -20,6 +21,11 @@ const GET_BLOGS = gql`
   }
 `;
 
+const BlogsLayoutContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
   const { loading, error, data } = useQuery(
     GET_BLOGS,
@@ -27,23 +33,27 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
   );
 
   if(loading) {
-    return "Loading...";
+    return <>Loading...</>;
   }
 
   if(error) {
-    return "Something went wrong";
+    return <>Something went wrong</>;
   }
 
-  return data
-    .blogPostCollection
-    .items
-    .map((blog: Blog, index: number) => {
-      return <Card 
-        key={index} 
-        large={!index}
-        title={blog.title}
-        body={blog.body} />
-    });
+  return (
+    <BlogsLayoutContainer>
+      {data
+        .blogPostCollection
+        .items
+        .map((blog: Blog, index: number) => {
+          return <Card 
+            key={index} 
+            large={!(index % 5)}
+            title={blog.title}
+            body={blog.body} />
+        })}
+    </BlogsLayoutContainer>
+  );
 };
 
 export {
