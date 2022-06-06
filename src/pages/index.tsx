@@ -1,3 +1,5 @@
+import { Blogs } from '../components/blogs';
+
 export default function BlogListingPage() {
-  return <div>...</div>;
+  return <Blogs />;
 }
