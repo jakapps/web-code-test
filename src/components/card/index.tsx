@@ -2,21 +2,32 @@ import { FC } from "react";
 import styled from "styled-components";
 
 type Card = {
-  title: string
+  title: string,
+  body: string
 };
 
-const H2 = styled.h2`
+const Heading = styled.h2`
   color: #5045CD;
   background: white;
   font-size: 25px;
+`;
+
+const Container = styled.div`
   box-shadow: 0px 2px 3px #ddd;
   padding: 14px;
 `;
 
-const Card: FC<Card> = ({ title }) => {
+const Body = styled.p`
+  font-size: 18px;
+`;
+
+const Card: FC<Card> = ({ title, body }) => {
 
   return (
-    <H2>{title}</H2>
+    <Container>
+      <Heading>{title}</Heading>
+      <Body>{body}</Body>
+    </Container>
   );
 };
 

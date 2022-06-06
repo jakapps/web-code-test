@@ -38,7 +38,10 @@ const Blogs: FC<{ limit?: number }> = ({ limit = 10 }) => {
     .blogPostCollection
     .items
     .map((blog: Blog, index: number) => {
-      return <Card key={index} title={blog.title}></Card>;
+      return <Card 
+        key={index} 
+        title={blog.title}
+        body={blog.body} />
     });
 };
 
